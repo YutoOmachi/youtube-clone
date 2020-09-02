@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Model.swift
 //  youtube-clone
 //
 //  Created by 小町悠登 on 2/9/20.
@@ -21,9 +21,18 @@ class Model {
                 return
             }
             
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let response = try decoder.decode(Response.self, from: data!)
+                
+                dump(response)
+            }
+            catch {
+                
+            }
             
-            
-        }.resume()
+        }.resume() 
         
         
     }
