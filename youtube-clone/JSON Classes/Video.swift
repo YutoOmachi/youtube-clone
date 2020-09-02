@@ -11,6 +11,7 @@ import Foundation
 struct Video: Decodable {
     
     var videoId = ""
+    var channelTitle = ""
     var title = ""
     var description = ""
     var thumbnail = ""
@@ -23,6 +24,7 @@ struct Video: Decodable {
         case high
         case resourceId
         
+        case channelTitle
         case videoId
         case title
         case description
@@ -39,6 +41,7 @@ struct Video: Decodable {
         self.title = try snippetContainer.decode(String.self, forKey: .title)
         self.description = try snippetContainer.decode(String.self, forKey: .description)
         self.published = try snippetContainer.decode(Date.self, forKey: .published)
+        self.channelTitle  = try snippetContainer.decode(String.self, forKey: .channelTitle)
         
         // Parse thumbnail
         let thumbnailContainer = try snippetContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .thumbnails)

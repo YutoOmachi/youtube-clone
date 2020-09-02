@@ -35,9 +35,6 @@ class Model {
                         self.delegate?.videosFetched(items)
                     }
                 }
-                
-
-                dump(response)
             }
             catch {
                 

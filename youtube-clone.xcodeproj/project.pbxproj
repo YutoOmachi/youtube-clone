@@ -13,6 +13,9 @@
 		3FCBD95224FF1916002FA4A7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD95124FF1916002FA4A7 /* Response.swift */; };
 		3FCBD95424FF265C002FA4A7 /* ConstantsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD95324FF265C002FA4A7 /* ConstantsTemplate.swift */; };
 		3FCBD95924FF2FB7002FA4A7 /* Stevia in Frameworks */ = {isa = PBXBuildFile; productRef = 3FCBD95824FF2FB7002FA4A7 /* Stevia */; };
+		3FCBD95B24FF3895002FA4A7 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD95A24FF3895002FA4A7 /* VideoCell.swift */; };
+		3FCBD95D24FF5F74002FA4A7 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD95C24FF5F74002FA4A7 /* CacheManager.swift */; };
+		3FCBD95F24FF715E002FA4A7 /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD95E24FF715E002FA4A7 /* VideoPlayerVC.swift */; };
 		3FFA2F7A24FCE197009B5948 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA2F7924FCE197009B5948 /* AppDelegate.swift */; };
 		3FFA2F7C24FCE197009B5948 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA2F7B24FCE197009B5948 /* SceneDelegate.swift */; };
 		3FFA2F7E24FCE198009B5948 /* VideoListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA2F7D24FCE198009B5948 /* VideoListVC.swift */; };
@@ -26,6 +29,9 @@
 		3FCBD94F24FF0CE4002FA4A7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3FCBD95124FF1916002FA4A7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		3FCBD95324FF265C002FA4A7 /* ConstantsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsTemplate.swift; sourceTree = "<group>"; };
+		3FCBD95A24FF3895002FA4A7 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		3FCBD95C24FF5F74002FA4A7 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		3FCBD95E24FF715E002FA4A7 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
 		3FFA2F7624FCE197009B5948 /* youtube-clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "youtube-clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFA2F7924FCE197009B5948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FFA2F7B24FCE197009B5948 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,9 +97,12 @@
 			children = (
 				3FCBD95524FF2D7D002FA4A7 /* JSON Classes */,
 				3FFA2F7D24FCE198009B5948 /* VideoListVC.swift */,
+				3FCBD95A24FF3895002FA4A7 /* VideoCell.swift */,
+				3FCBD95C24FF5F74002FA4A7 /* CacheManager.swift */,
 				3FFA2F8724FCE19F009B5948 /* Info.plist */,
 				3FCBD95624FF2DA7002FA4A7 /* Configuration */,
 				3FFA2F7724FCE197009B5948 /* Products */,
+				3FCBD95E24FF715E002FA4A7 /* VideoPlayerVC.swift */,
 			);
 			path = "youtube-clone";
 			sourceTree = "<group>";
@@ -176,11 +185,14 @@
 			files = (
 				3FFA2F7E24FCE198009B5948 /* VideoListVC.swift in Sources */,
 				3FCBD95024FF0CE4002FA4A7 /* Model.swift in Sources */,
+				3FCBD95B24FF3895002FA4A7 /* VideoCell.swift in Sources */,
 				3FFA2F7A24FCE197009B5948 /* AppDelegate.swift in Sources */,
 				3FCBD95424FF265C002FA4A7 /* ConstantsTemplate.swift in Sources */,
 				3FFA2F7C24FCE197009B5948 /* SceneDelegate.swift in Sources */,
+				3FCBD95D24FF5F74002FA4A7 /* CacheManager.swift in Sources */,
 				3F724D3224FE4DA1006EA992 /* Constants.swift in Sources */,
 				3FCBD94E24FF0C9D002FA4A7 /* Video.swift in Sources */,
+				3FCBD95F24FF715E002FA4A7 /* VideoPlayerVC.swift in Sources */,
 				3FCBD95224FF1916002FA4A7 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
