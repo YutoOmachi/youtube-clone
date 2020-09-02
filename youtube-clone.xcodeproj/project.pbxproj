@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,16 +12,16 @@
 		3FCBD95024FF0CE4002FA4A7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD94F24FF0CE4002FA4A7 /* Model.swift */; };
 		3FCBD95224FF1916002FA4A7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD95124FF1916002FA4A7 /* Response.swift */; };
 		3FCBD95424FF265C002FA4A7 /* ConstantsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD95324FF265C002FA4A7 /* ConstantsTemplate.swift */; };
+		3FCBD95924FF2FB7002FA4A7 /* Stevia in Frameworks */ = {isa = PBXBuildFile; productRef = 3FCBD95824FF2FB7002FA4A7 /* Stevia */; };
 		3FFA2F7A24FCE197009B5948 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA2F7924FCE197009B5948 /* AppDelegate.swift */; };
 		3FFA2F7C24FCE197009B5948 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA2F7B24FCE197009B5948 /* SceneDelegate.swift */; };
-		3FFA2F7E24FCE198009B5948 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA2F7D24FCE198009B5948 /* ViewController.swift */; };
-		3FFA2F8124FCE198009B5948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA2F7F24FCE198009B5948 /* Main.storyboard */; };
+		3FFA2F7E24FCE198009B5948 /* VideoListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA2F7D24FCE198009B5948 /* VideoListVC.swift */; };
 		3FFA2F8324FCE19F009B5948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA2F8224FCE19F009B5948 /* Assets.xcassets */; };
 		3FFA2F8624FCE19F009B5948 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA2F8424FCE19F009B5948 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F724D3124FE4DA1006EA992 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3F724D3124FE4DA1006EA992 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		3FCBD94D24FF0C9D002FA4A7 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		3FCBD94F24FF0CE4002FA4A7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3FCBD95124FF1916002FA4A7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -29,8 +29,7 @@
 		3FFA2F7624FCE197009B5948 /* youtube-clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "youtube-clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFA2F7924FCE197009B5948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FFA2F7B24FCE197009B5948 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3FFA2F7D24FCE198009B5948 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3FFA2F8024FCE198009B5948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3FFA2F7D24FCE198009B5948 /* VideoListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListVC.swift; sourceTree = "<group>"; };
 		3FFA2F8224FCE19F009B5948 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FFA2F8524FCE19F009B5948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FFA2F8724FCE19F009B5948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,12 +40,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FCBD95924FF2FB7002FA4A7 /* Stevia in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FCBD95524FF2D7D002FA4A7 /* JSON Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3FCBD94D24FF0C9D002FA4A7 /* Video.swift */,
+				3FCBD95124FF1916002FA4A7 /* Response.swift */,
+				3F724D3124FE4DA1006EA992 /* Constants.swift */,
+				3FCBD94F24FF0CE4002FA4A7 /* Model.swift */,
+				3FCBD95324FF265C002FA4A7 /* ConstantsTemplate.swift */,
+			);
+			path = "JSON Classes";
+			sourceTree = "<group>";
+		};
+		3FCBD95624FF2DA7002FA4A7 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3FFA2F7924FCE197009B5948 /* AppDelegate.swift */,
+				3FFA2F7B24FCE197009B5948 /* SceneDelegate.swift */,
+				3FFA2F8424FCE19F009B5948 /* LaunchScreen.storyboard */,
+				3FFA2F8224FCE19F009B5948 /* Assets.xcassets */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		3FFA2F6D24FCE197009B5948 = {
 			isa = PBXGroup;
 			children = (
@@ -66,18 +89,10 @@
 		3FFA2F7824FCE197009B5948 /* youtube-clone */ = {
 			isa = PBXGroup;
 			children = (
-				3F724D3124FE4DA1006EA992 /* Constants.swift */,
-				3FCBD95124FF1916002FA4A7 /* Response.swift */,
-				3FCBD94D24FF0C9D002FA4A7 /* Video.swift */,
-				3FCBD94F24FF0CE4002FA4A7 /* Model.swift */,
-				3FFA2F7924FCE197009B5948 /* AppDelegate.swift */,
-				3FFA2F7B24FCE197009B5948 /* SceneDelegate.swift */,
-				3FFA2F7D24FCE198009B5948 /* ViewController.swift */,
-				3FFA2F7F24FCE198009B5948 /* Main.storyboard */,
-				3FCBD95324FF265C002FA4A7 /* ConstantsTemplate.swift */,
-				3FFA2F8224FCE19F009B5948 /* Assets.xcassets */,
-				3FFA2F8424FCE19F009B5948 /* LaunchScreen.storyboard */,
+				3FCBD95524FF2D7D002FA4A7 /* JSON Classes */,
+				3FFA2F7D24FCE198009B5948 /* VideoListVC.swift */,
 				3FFA2F8724FCE19F009B5948 /* Info.plist */,
+				3FCBD95624FF2DA7002FA4A7 /* Configuration */,
 				3FFA2F7724FCE197009B5948 /* Products */,
 			);
 			path = "youtube-clone";
@@ -99,6 +114,9 @@
 			dependencies = (
 			);
 			name = "youtube-clone";
+			packageProductDependencies = (
+				3FCBD95824FF2FB7002FA4A7 /* Stevia */,
+			);
 			productName = "youtube-clone";
 			productReference = 3FFA2F7624FCE197009B5948 /* youtube-clone.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +145,9 @@
 				Base,
 			);
 			mainGroup = 3FFA2F6D24FCE197009B5948;
+			packageReferences = (
+				3FCBD95724FF2FB7002FA4A7 /* XCRemoteSwiftPackageReference "Stevia" */,
+			);
 			productRefGroup = 3FFA2F7724FCE197009B5948 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,7 +164,6 @@
 			files = (
 				3FFA2F8624FCE19F009B5948 /* LaunchScreen.storyboard in Resources */,
 				3FFA2F8324FCE19F009B5948 /* Assets.xcassets in Resources */,
-				3FFA2F8124FCE198009B5948 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,7 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FFA2F7E24FCE198009B5948 /* ViewController.swift in Sources */,
+				3FFA2F7E24FCE198009B5948 /* VideoListVC.swift in Sources */,
 				3FCBD95024FF0CE4002FA4A7 /* Model.swift in Sources */,
 				3FFA2F7A24FCE197009B5948 /* AppDelegate.swift in Sources */,
 				3FCBD95424FF265C002FA4A7 /* ConstantsTemplate.swift in Sources */,
@@ -168,14 +188,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3FFA2F7F24FCE198009B5948 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FFA2F8024FCE198009B5948 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3FFA2F8424FCE19F009B5948 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -359,6 +371,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3FCBD95724FF2FB7002FA4A7 /* XCRemoteSwiftPackageReference "Stevia" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/freshOS/Stevia.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3FCBD95824FF2FB7002FA4A7 /* Stevia */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FCBD95724FF2FB7002FA4A7 /* XCRemoteSwiftPackageReference "Stevia" */;
+			productName = Stevia;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3FFA2F6E24FCE197009B5948 /* Project object */;
 }
