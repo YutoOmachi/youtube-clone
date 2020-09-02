@@ -65,6 +65,9 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let VC = VideoPlayerVC()
-        navigationController?.pushViewController(VC, animated: true)
+        VC.modalPresentationStyle = .fullScreen
+        VC.modalTransitionStyle = .coverVertical
+        VC.video = self.videos[indexPath.row]
+        present(VC, animated: true)
     }
 }

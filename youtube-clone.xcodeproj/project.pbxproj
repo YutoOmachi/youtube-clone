@@ -98,11 +98,11 @@
 				3FCBD95524FF2D7D002FA4A7 /* JSON Classes */,
 				3FFA2F7D24FCE198009B5948 /* VideoListVC.swift */,
 				3FCBD95A24FF3895002FA4A7 /* VideoCell.swift */,
+				3FCBD95E24FF715E002FA4A7 /* VideoPlayerVC.swift */,
 				3FCBD95C24FF5F74002FA4A7 /* CacheManager.swift */,
 				3FFA2F8724FCE19F009B5948 /* Info.plist */,
 				3FCBD95624FF2DA7002FA4A7 /* Configuration */,
 				3FFA2F7724FCE197009B5948 /* Products */,
-				3FCBD95E24FF715E002FA4A7 /* VideoPlayerVC.swift */,
 			);
 			path = "youtube-clone";
 			sourceTree = "<group>";

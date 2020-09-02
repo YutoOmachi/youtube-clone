@@ -13,8 +13,8 @@ class VideoCell: UITableViewCell {
     
     var thumbnailImageView = UIImageView()
     var stackView = UIStackView()
-    var titleTextView = UITextView()
-    var infoTextView = UITextView()
+    var titleLabel = UILabel()
+    var infoLabel = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -37,25 +37,23 @@ class VideoCell: UITableViewCell {
     }
     
     func configureStackView() {
-        stackView.addArrangedSubview(titleTextView)
-        stackView.addArrangedSubview(infoTextView)
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(infoLabel)
         stackView.height(25%).width(100%).bottom(0).centerHorizontally()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        titleTextView.backgroundColor = .white
-        infoTextView.backgroundColor = .white
-        titleTextView.isScrollEnabled = false
-        infoTextView.isScrollEnabled = false
-        titleTextView.isEditable = false
-        infoTextView.isEditable = false
+        titleLabel.backgroundColor = .white
+        infoLabel.backgroundColor = .white
+        titleLabel.numberOfLines = 0
+        infoLabel.numberOfLines = 0
     }
     
     func updateData(_ video: Video) {
-        titleTextView.text = video.title
+        titleLabel.text = video.title
         let df = DateFormatter()
         df.dateFormat = "EEEE, MMM d, yyyy"
         let published = df.string(from: video.published)
-        infoTextView.text = "\(video.channelTitle)・\(published)"
+        infoLabel.text = "\(video.channelTitle)・\(published)"
         
         if let cacheData = CacheManager.getVideoCache(video.thumbnail) {
             self.thumbnailImageView.image = UIImage(data: cacheData)
