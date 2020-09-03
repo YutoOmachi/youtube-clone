@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F4CECB5250077C2001C0D6E /* MiniVideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4CECB4250077C2001C0D6E /* MiniVideoPlayerVC.swift */; };
 		3F724D3224FE4DA1006EA992 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F724D3124FE4DA1006EA992 /* Constants.swift */; };
 		3FCBD94E24FF0C9D002FA4A7 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD94D24FF0C9D002FA4A7 /* Video.swift */; };
 		3FCBD95024FF0CE4002FA4A7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD94F24FF0CE4002FA4A7 /* Model.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F4CECB4250077C2001C0D6E /* MiniVideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniVideoPlayerVC.swift; sourceTree = "<group>"; };
 		3F724D3124FE4DA1006EA992 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		3FCBD94D24FF0C9D002FA4A7 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		3FCBD94F24FF0CE4002FA4A7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -53,6 +55,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F4CECB6250077CB001C0D6E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3FFA2F7D24FCE198009B5948 /* VideoListVC.swift */,
+				3F4CECB4250077C2001C0D6E /* MiniVideoPlayerVC.swift */,
+				3FCBD95E24FF715E002FA4A7 /* VideoPlayerVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		3FCBD95524FF2D7D002FA4A7 /* JSON Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,9 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				3FCBD95524FF2D7D002FA4A7 /* JSON Classes */,
-				3FFA2F7D24FCE198009B5948 /* VideoListVC.swift */,
+				3F4CECB6250077CB001C0D6E /* ViewControllers */,
 				3FCBD95A24FF3895002FA4A7 /* VideoCell.swift */,
-				3FCBD95E24FF715E002FA4A7 /* VideoPlayerVC.swift */,
 				3FCBD95C24FF5F74002FA4A7 /* CacheManager.swift */,
 				3FFA2F8724FCE19F009B5948 /* Info.plist */,
 				3FCBD95624FF2DA7002FA4A7 /* Configuration */,
@@ -187,6 +198,7 @@
 				3FCBD95024FF0CE4002FA4A7 /* Model.swift in Sources */,
 				3FCBD95B24FF3895002FA4A7 /* VideoCell.swift in Sources */,
 				3FFA2F7A24FCE197009B5948 /* AppDelegate.swift in Sources */,
+				3F4CECB5250077C2001C0D6E /* MiniVideoPlayerVC.swift in Sources */,
 				3FCBD95424FF265C002FA4A7 /* ConstantsTemplate.swift in Sources */,
 				3FFA2F7C24FCE197009B5948 /* SceneDelegate.swift in Sources */,
 				3FCBD95D24FF5F74002FA4A7 /* CacheManager.swift in Sources */,
