@@ -13,7 +13,8 @@ class VideoListVC: UIViewController {
 
     var model = Model()
     var videos = [Video]()
-    let tableView = UITableView()
+    let tableView = UITableView(frame: .zero, style: .grouped)
+    let popUpVC = PopUpVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,7 @@ class VideoListVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(VideoCell.self, forCellReuseIdentifier: "VideoCell")
-        tableView.rowHeight = 350
+        tableView.rowHeight = Helper.ScreenSize.height*0.4
     }
 
 }
@@ -62,12 +63,32 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
         }
         return UITableViewCell()
     }
-    
+        
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let VC = VideoPlayerVC()
-        VC.modalTransitionStyle = .coverVertical
-        VC.modalPresentationStyle = .overFullScreen
-        VC.video = self.videos[indexPath.row]
-        present(VC, animated: true)
+        print("selected")
+        popUpVC.removeFromParent()
+        popUpVC.view.removeFromSuperview()
+        popUpVC.sampleTBC = self.tabBarController
+        Helper.removeConstraints(for: [popUpVC.popUpView.videoViewController.view, popUpVC.popUpView.descriptionTextView, popUpVC.popUpView.miniStackView])
+        popUpVC.popUpView.configureView()
+        popUpVC.video = videos[indexPath.row]
+        self.addChild(popUpVC)
+        self.view.addSubview(popUpVC.view)
+        UIView.animate(withDuration: 0.3) {
+            self.popUpVC.view.frame = Helper.ScreenSize
+        }
+        popUpVC.popUpView.updateInitialConstraints()
+        popUpVC.popUpView.layoutIfNeeded()
     }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.height(5%).fillHorizontally()
+        headerView.backgroundColor = UIColor.themeColor
+        headerView.height(Helper.ScreenSize.height*0.05)
+    
+        return headerView
+    }
+    
 }

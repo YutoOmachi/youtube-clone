@@ -13,15 +13,28 @@ class VideoCell: UITableViewCell {
     
     var thumbnailImageView = UIImageView()
     var stackView = UIStackView()
-    var titleLabel = UILabel()
-    var infoLabel = UILabel()
-
+    var titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .white
+        label.backgroundColor = UIColor.themeColor.withAlphaComponent(1)
+        return label
+    }()
+    var infoLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .gray
+        label.backgroundColor = UIColor.themeColor.withAlphaComponent(1)
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.subviews{
             thumbnailImageView
             stackView
         }
+        self.backgroundColor = UIColor.themeColor.withAlphaComponent(1)
         configureThumbnail()
         configureStackView()
     }
@@ -31,21 +44,18 @@ class VideoCell: UITableViewCell {
     }
     
     func configureThumbnail() {
-        thumbnailImageView.height(75%).width(100%).top(0).centerHorizontally()
+        thumbnailImageView.height(70%).top(0).fillHorizontally()
         thumbnailImageView.contentMode = .scaleAspectFill
-        thumbnailImageView.backgroundColor = .white
+        thumbnailImageView.backgroundColor = UIColor.white.withAlphaComponent(1)
     }
     
     func configureStackView() {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(infoLabel)
-        stackView.height(25%).width(100%).bottom(0).centerHorizontally()
+        stackView.height(25%).bottom(0).left(2%).width(96%)
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        titleLabel.backgroundColor = .white
-        infoLabel.backgroundColor = .white
-        titleLabel.numberOfLines = 0
-        infoLabel.numberOfLines = 0
+        stackView.backgroundColor = UIColor.themeColor.withAlphaComponent(1)
     }
     
     func updateData(_ video: Video) {
@@ -60,24 +70,43 @@ class VideoCell: UITableViewCell {
             return
         }
         
-        guard video.thumbnail != "" else { return }
-        let url = URL(string: video.thumbnail)
+        // try high resolution thumbnail
+        var url = URL(string: video.thumbnailHigh)
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error == nil && data != nil {
                 
                 CacheManager.setVideoCache(url!.absoluteString, data!)
                 
-                if url?.absoluteString != video.thumbnail {
+                if url?.absoluteString != video.thumbnailHigh {
                    return
                 }
                 
                 let image = UIImage(data: data!)
-                
                 DispatchQueue.main.async {
                     self.thumbnailImageView.image = image
                 }
             }
         }.resume()
+        
+        //if high resolution thumbnail not found, try standart quality
+        if self.thumbnailImageView.image == nil {
+            url = URL(string: video.thumbnail)
+            URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                if error == nil && data != nil {
+                    
+                    CacheManager.setVideoCache(url!.absoluteString, data!)
+                    
+                    if url?.absoluteString != video.thumbnail {
+                       return
+                    }
+                    
+                    let image = UIImage(data: data!)
+                    DispatchQueue.main.async {
+                        self.thumbnailImageView.image = image
+                    }
+                }
+            }.resume()
+        }
     }
     
 }

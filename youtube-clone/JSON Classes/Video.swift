@@ -15,6 +15,7 @@ struct Video: Decodable {
     var title = ""
     var description = ""
     var thumbnail = ""
+    var thumbnailHigh = ""
     var published = Date()
     
     enum CodingKeys: String, CodingKey {
@@ -28,7 +29,6 @@ struct Video: Decodable {
         case videoId
         case title
         case description
-        case thumbnail = "url"
         case published = "publishedAt"
     }
     
@@ -42,15 +42,17 @@ struct Video: Decodable {
         self.description = try snippetContainer.decode(String.self, forKey: .description)
         self.published = try snippetContainer.decode(Date.self, forKey: .published)
         self.channelTitle  = try snippetContainer.decode(String.self, forKey: .channelTitle)
-        
-        // Parse thumbnail
-        let thumbnailContainer = try snippetContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .thumbnails)
-        let highContainer = try thumbnailContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .high)
-        self.thumbnail = try highContainer.decode(String.self, forKey: .thumbnail)
-        
+
         //Parse VideoID
         let resourceIdContainer = try snippetContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .resourceId)
         self.videoId = try resourceIdContainer.decode(String.self, forKey: .videoId)
+        
+        // Parse thumbnail
+        //        let thumbnailContainer = try snippetContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .thumbnails)
+        //        let highContainer = try thumbnailContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .high)
+        //        self.thumbnail = try highContainer.decode(String.self, forKey: .thumbnail)
+        self.thumbnail = "https://img.youtube.com/vi/\(videoId)/mqdefault.jpg"
+        self.thumbnailHigh = "https://img.youtube.com/vi/\(videoId)/maxresdefault.jpg"
     }
     
 }
