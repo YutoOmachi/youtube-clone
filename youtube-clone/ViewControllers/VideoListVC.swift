@@ -13,8 +13,9 @@ class VideoListVC: UIViewController {
 
     var model = Model()
     var videos = [Video]()
-    let tableView = UITableView(frame: .zero, style: .grouped)
+    let tableView = UITableView(frame: .zero, style: .plain)
     let popUpVC = PopUpVC()
+    let headerView = VideoListHeaderView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,11 @@ class VideoListVC: UIViewController {
         tableView.rowHeight = Helper.ScreenSize.height*0.4
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    
 }
 
 
@@ -59,6 +65,7 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as? VideoCell {
             let video = self.videos[indexPath.row]
             cell.updateData(video)
+            cell.selectionStyle = .none
             return cell
         }
         return UITableViewCell()
@@ -83,12 +90,36 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.height(5%).fillHorizontally()
         headerView.backgroundColor = UIColor.themeColor
-        headerView.height(Helper.ScreenSize.height*0.05)
-    
         return headerView
     }
     
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Helper.ScreenSize.height*0.08
+    }
+    
+}
+
+extension VideoListVC: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y: CGFloat = scrollView.contentOffset.y
+
+        if !self.headerView.isHidden && y > 50 {
+            UIView.animate(withDuration: 5, animations: {
+                self.headerView.alpha = 0
+            }) { ( success ) in
+                print("Now it's hidden")
+                self.headerView.isHidden = true
+            }
+        }
+        else if  self.headerView.isHidden && y < -50 {
+            UIView.animate(withDuration: 1, animations: {
+                self.headerView.alpha = 1
+            }) { ( success ) in
+                self.headerView.isHidden = false
+            }
+        }
+    }
 }

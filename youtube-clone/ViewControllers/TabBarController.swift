@@ -9,7 +9,7 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    
     let firstViewController = VideoListVC()
     let secondViewController = EmptyVC()
     let thirdViewController = EmptyVC()
@@ -43,5 +43,8 @@ class TabBarController: UITabBarController {
         
         self.tabBar.frame = CGRect(x: 0, y: Helper.ScreenSize.height*(0.9 + (firstViewController.popUpVC.view.frame.size.height/Helper.ScreenSize.height - 0.1)/6), width: self.tabBar.frame.width, height: Helper.ScreenSize.height*0.1)
     }
+
 }
+
+
 
