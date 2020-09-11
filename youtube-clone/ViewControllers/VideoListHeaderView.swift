@@ -39,8 +39,9 @@ class VideoListHeaderView: UIView {
     }()
     
     let logoImageView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "play.rectangle.fill"))
+        let view = UIImageView(image: UIImage(named: "youtube_logo_dark.png"))
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
         view.tintColor = .white
         return view
     }()
@@ -52,6 +53,7 @@ class VideoListHeaderView: UIView {
         super.init(frame: frame)
         configureStackView()
         setLayout()
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
@@ -61,6 +63,7 @@ class VideoListHeaderView: UIView {
     func configureStackView() {
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(buttonStackView)
+        self.addSubview(logoImageView)
         buttonStackView.addArrangedSubview(airPlayButton)
         buttonStackView.addArrangedSubview(uploadButton)
         buttonStackView.addArrangedSubview(searchButton)
@@ -70,16 +73,15 @@ class VideoListHeaderView: UIView {
     }
     
     func setLayout() {
-        self.addSubview(logoImageView)
         NSLayoutConstraint.activate([
             buttonStackView.heightAnchor.constraint(equalTo: self.heightAnchor),
             buttonStackView.topAnchor.constraint(equalTo: self.topAnchor),
             buttonStackView.rightAnchor.constraint(equalTo: self.rightAnchor),
             buttonStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
-            logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor),
-            logoImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            logoImageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
+            logoImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5),
+            logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: Helper.ScreenSize.height*0.02),
+            logoImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
+            logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25)
         ])
     }
     

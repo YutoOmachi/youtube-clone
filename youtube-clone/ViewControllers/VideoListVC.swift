@@ -16,6 +16,9 @@ class VideoListVC: UIViewController {
     let tableView = UITableView(frame: .zero, style: .plain)
     let popUpVC = PopUpVC()
     let headerView = VideoListHeaderView()
+    var previousScrollMoment: Date = Date()
+    var previousScrollY: CGFloat = 0
+    var animatingHeaderView = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,7 @@ class VideoListVC: UIViewController {
         configureTableView()
         configureModel()
     }
+    
     
     func configureModel() {
         model.getVideos()
@@ -46,7 +50,6 @@ class VideoListVC: UIViewController {
     
     
 }
-
 
 extension VideoListVC: ModelDelegate {
     func videosFetched(_ videos:[Video]) {
@@ -72,7 +75,6 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected")
         popUpVC.removeFromParent()
         popUpVC.view.removeFromSuperview()
         popUpVC.sampleTBC = self.tabBarController
@@ -90,8 +92,12 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: Helper.ScreenSize.width, height: Helper.ScreenSize.height*0.08))
+        view.backgroundColor = .clear
+        view.addSubview(headerView)
+        headerView.fillContainer()
         headerView.backgroundColor = UIColor.themeColor
-        return headerView
+        return view
     }
     
     
@@ -101,25 +107,3 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-extension VideoListVC: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let y: CGFloat = scrollView.contentOffset.y
-
-        if !self.headerView.isHidden && y > 50 {
-            UIView.animate(withDuration: 5, animations: {
-                self.headerView.alpha = 0
-            }) { ( success ) in
-                print("Now it's hidden")
-                self.headerView.isHidden = true
-            }
-        }
-        else if  self.headerView.isHidden && y < -50 {
-            UIView.animate(withDuration: 1, animations: {
-                self.headerView.alpha = 1
-            }) { ( success ) in
-                self.headerView.isHidden = false
-            }
-        }
-    }
-}
