@@ -19,8 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let tabBarController = TabBarController()
-            window.rootViewController = tabBarController
+            let navController = UINavigationController(rootViewController: TabBarController())
+            navController.hidesBarsOnSwipe = true
+            navController.navigationBar.backgroundColor = UIColor.themeColor
+            navController.navigationBar.tintColor = UIColor.white
+            window.rootViewController = navController
             self.window = window
             window.makeKeyAndVisible()
         }
