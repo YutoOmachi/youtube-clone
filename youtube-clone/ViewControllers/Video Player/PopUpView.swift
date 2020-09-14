@@ -12,7 +12,8 @@ import UIKit
 
 class PopUpView: UIView {
 
-    let videoViewController = VideoViewController()
+//    let videoViewController = VideoViewController()
+    let videoPlayerView = VideoPlayerView()
     let descriptionTextView = DescriptionTextView()
     let miniStackView = MiniStackView()
     
@@ -27,28 +28,32 @@ class PopUpView: UIView {
     
     func configureView() {
         self.addSubview(miniStackView)
-        self.addSubview(videoViewController.view)
+//        self.addSubview(videoViewController.view)
+        self.addSubview(videoPlayerView)
         self.addSubview(descriptionTextView)
         self.backgroundColor = UIColor.themeColor.withAlphaComponent(0.95)
     }
     
     func updateInitialConstraints() {
-        Helper.removeConstraints(for: [videoViewController.view, descriptionTextView, miniStackView])
-        videoViewController.setIntialConstraints()
+        Helper.removeConstraints(for: [videoPlayerView, descriptionTextView, miniStackView])
+//        videoViewController.setIntialConstraints()
+        videoPlayerView.setIntialConstraints()
         descriptionTextView.setIntialConstraints()
         miniStackView.setIntialConstraints()
     }
     
     func updateMiddleConstraints(height: CGFloat, ratio: CGFloat) {
-        Helper.removeConstraints(for: [videoViewController.view, descriptionTextView, miniStackView])
-        videoViewController.setMiddleConstraint(height: height, ratio: ratio)
+        Helper.removeConstraints(for: [videoPlayerView, descriptionTextView, miniStackView])
+//        videoViewController.setMiddleConstraint(height: height, ratio: ratio)
+        videoPlayerView.setMiddleConstraint(height: height, ratio: ratio)
         descriptionTextView.setMiddleConstraint(height: height, ratio: ratio)
         miniStackView.setMiddleConstraint()
     }
     
     func updateMiniConstraints(height: CGFloat, ratio: CGFloat) {
-        Helper.removeConstraints(for: [videoViewController.view, descriptionTextView, miniStackView])
-        videoViewController.setMiniConstraint(height: height, ratio: ratio)
+        Helper.removeConstraints(for: [videoPlayerView, descriptionTextView, miniStackView])
+//        videoViewController.setMiniConstraint(height: height, ratio: ratio)
+        videoPlayerView.setMiniConstraint(height: height, ratio: ratio)
         descriptionTextView.setMiniConstraint()
         miniStackView.setMiniConstraint(height: height, ratio: ratio)
     }

@@ -13,7 +13,6 @@ import Stevia
 
 class PopUpVC: UIViewController {
     
-    let screenSize = UIScreen.main.bounds
     var popUpView: PopUpView!
     var sampleTBC: UITabBarController!
     var isFullScreen = true
@@ -25,7 +24,9 @@ class PopUpVC: UIViewController {
     
     override func loadView() {
         self.view = PopUpView()
+        popUpView = self.view as? PopUpView
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +36,10 @@ class PopUpVC: UIViewController {
     
     
     func configureView() {
-        popUpView = self.view as? PopUpView
-        self.addChild(popUpView.videoViewController)
+//        self.addChild(popUpView.videoViewController)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragPan(_:)))
-        popUpView.videoViewController.view.addGestureRecognizer(panGesture)
+//        popUpView.videoViewController.view.addGestureRecognizer(panGesture)
+        popUpView.videoPlayerView.addGestureRecognizer(panGesture)
         popUpView.miniStackView.miniStackViewDelegate = self
     }
     
@@ -63,7 +64,7 @@ class PopUpVC: UIViewController {
             if height < UIScreen.main.bounds.height*0.1 {
                 return
             }
-            else if height > UIScreen.main.bounds.height {
+            else if height > Helper.SafeScreenSize.height {
                 return
             }
             
@@ -79,14 +80,14 @@ class PopUpVC: UIViewController {
             self.view.frame = newFrame
             
             switch height {
-            case _ where height < screenSize.height*0.2:
-                let ratio = (height/screenSize.height)*10/3
+            case _ where height < Helper.ScreenSize.height*0.2:
+                let ratio = (height/Helper.ScreenSize.height)*10/3
                 popUpView.updateMiniConstraints(height: height, ratio: ratio)
                 self.view.layoutIfNeeded()
                 self.sampleTBC.viewDidLayoutSubviews()
             
-            case _ where height < screenSize.height*0.8 :
-                let ratio = height/screenSize.height - 0.2
+            case _ where height < Helper.ScreenSize.height*0.8 :
+                let ratio = height/Helper.ScreenSize.height - 0.2
                 popUpView.updateMiddleConstraints(height: height, ratio: ratio)
                 self.view.layoutIfNeeded()
                 self.sampleTBC.viewDidLayoutSubviews()
@@ -113,12 +114,14 @@ class PopUpVC: UIViewController {
                 popUpView.updateMiniConstraints(height: Helper.ScreenSize.height*0.1, ratio: 1/3)
                 UIView.animate(withDuration: 0.1) {
                     self.popUpView.descriptionTextView.alpha = 0
-                    self.view.frame = CGRect(x: 0, y: self.screenSize.maxY*0.8, width: self.screenSize.width, height: self.screenSize.maxY*0.1)
+                    self.view.frame = CGRect(x: 0, y: Helper.ScreenSize.maxY*0.8, width: Helper.ScreenSize.width, height: Helper.ScreenSize.maxY*0.1)
                     self.view.layoutIfNeeded()
                     self.sampleTBC.viewDidLayoutSubviews()
+                    self.popUpView.videoPlayerView.updatePlayerLayer()
                 }
                 isFullScreen = false
-
+                print(popUpView.miniStackView.frame)
+                print(popUpView.videoPlayerView.frame)
             }
             else {
                 // Transform view to full screen
@@ -126,9 +129,10 @@ class PopUpVC: UIViewController {
                     
                 UIView.animate(withDuration: 0.1) {
                     self.popUpView.descriptionTextView.alpha = 1
-                    self.view.frame = self.screenSize
-                    self.view.layoutIfNeeded()
+                    self.view.frame = Helper.SafeScreenSize
                     self.sampleTBC.viewDidLayoutSubviews()
+                    self.view.layoutIfNeeded()
+                    self.popUpView.videoPlayerView.updatePlayerLayer()
                 }
                 isFullScreen = true
             }
@@ -141,7 +145,7 @@ class PopUpVC: UIViewController {
 extension PopUpVC: MiniStackViewDelegate {
     
     func playPauseTapped() {
-        if let player = self.popUpView.videoViewController.player {
+        if let player = self.popUpView.videoPlayerView.player {
             if player.rate != 0 {
                 player.pause()
                 self.popUpView.miniStackView.playPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
@@ -157,6 +161,7 @@ extension PopUpVC: MiniStackViewDelegate {
         self.removeFromParent()
         self.view.removeFromSuperview()
         self.popUpView.descriptionTextView.alpha = 1
+        self.popUpView.videoPlayerView.player?.pause()
         self.dismiss(animated: true, completion: nil)
     }
 }

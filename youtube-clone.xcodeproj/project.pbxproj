@@ -10,6 +10,8 @@
 		3F255C0C250A30400052D4FE /* TabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F255C0B250A30400052D4FE /* TabBarExtension.swift */; };
 		3F4B5C632508C44400F3F461 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5C622508C44400F3F461 /* ColorExtension.swift */; };
 		3F4B5C652508CA2D00F3F461 /* EmptyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5C642508CA2D00F3F461 /* EmptyVC.swift */; };
+		3F5C31D4250EED70009CE3FF /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C31D3250EED70009CE3FF /* VideoPlayerView.swift */; };
+		3F5C31D6250F58BC009CE3FF /* NavControlloerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C31D5250F58BC009CE3FF /* NavControlloerExtension.swift */; };
 		3F5CC88D2506D38D00D38AE4 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5CC88C2506D38D00D38AE4 /* VideoViewController.swift */; };
 		3F5CC88F2506D4D000D38AE4 /* DescriptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5CC88E2506D4D000D38AE4 /* DescriptionTextView.swift */; };
 		3F5CC8912506D52E00D38AE4 /* MiniStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5CC8902506D52E00D38AE4 /* MiniStackView.swift */; };
@@ -38,6 +40,8 @@
 		3F255C0B250A30400052D4FE /* TabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarExtension.swift; sourceTree = "<group>"; };
 		3F4B5C622508C44400F3F461 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		3F4B5C642508CA2D00F3F461 /* EmptyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyVC.swift; sourceTree = "<group>"; };
+		3F5C31D3250EED70009CE3FF /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		3F5C31D5250F58BC009CE3FF /* NavControlloerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavControlloerExtension.swift; sourceTree = "<group>"; };
 		3F5CC88C2506D38D00D38AE4 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		3F5CC88E2506D4D000D38AE4 /* DescriptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTextView.swift; sourceTree = "<group>"; };
 		3F5CC8902506D52E00D38AE4 /* MiniStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniStackView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 				3FCBD95E24FF715E002FA4A7 /* PopUpVC.swift */,
 				3F5CC8942506DC9F00D38AE4 /* PopUpView.swift */,
 				3F5CC88C2506D38D00D38AE4 /* VideoViewController.swift */,
+				3F5C31D3250EED70009CE3FF /* VideoPlayerView.swift */,
 				3F5CC88E2506D4D000D38AE4 /* DescriptionTextView.swift */,
 				3F5CC8902506D52E00D38AE4 /* MiniStackView.swift */,
 			);
@@ -126,6 +131,7 @@
 			children = (
 				3F5CC8922506D8D000D38AE4 /* Helper.swift */,
 				3F255C0B250A30400052D4FE /* TabBarExtension.swift */,
+				3F5C31D5250F58BC009CE3FF /* NavControlloerExtension.swift */,
 				3F4B5C622508C44400F3F461 /* ColorExtension.swift */,
 			);
 			name = "Extension-Helper";
@@ -252,8 +258,10 @@
 				3F5CC88D2506D38D00D38AE4 /* VideoViewController.swift in Sources */,
 				3FFA2F7E24FCE198009B5948 /* VideoListVC.swift in Sources */,
 				3F5CC8932506D8D000D38AE4 /* Helper.swift in Sources */,
+				3F5C31D4250EED70009CE3FF /* VideoPlayerView.swift in Sources */,
 				3F4B5C632508C44400F3F461 /* ColorExtension.swift in Sources */,
 				3F9F36D4250B695300191557 /* VideoListHeaderView.swift in Sources */,
+				3F5C31D6250F58BC009CE3FF /* NavControlloerExtension.swift in Sources */,
 				3FCBD95024FF0CE4002FA4A7 /* Model.swift in Sources */,
 				3F255C0C250A30400052D4FE /* TabBarExtension.swift in Sources */,
 				3FCBD95B24FF3895002FA4A7 /* VideoCell.swift in Sources */,

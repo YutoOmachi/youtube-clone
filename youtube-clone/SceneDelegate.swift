@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let navController = UINavigationController(rootViewController: TabBarController())
             navController.hidesBarsOnSwipe = true
-            navController.navigationBar.backgroundColor = UIColor.themeColor
+            navController.navigationBar.barStyle = .black
+            navController.navigationBar.backgroundColor = UIColor.themeColor.withAlphaComponent(1)
             navController.navigationBar.tintColor = UIColor.white
             window.rootViewController = navController
             self.window = window

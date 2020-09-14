@@ -25,6 +25,7 @@ class TabBarController: UITabBarController {
         fourthViewController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), selectedImage: UIImage(systemName: "bell.fill"))
         fifthViewController.tabBarItem = UITabBarItem(title: "Library", image: UIImage(systemName: "rectangle.on.rectangle"), selectedImage: UIImage(systemName: "rectangle.on.rectangle.fill"))
         
+
         let tabBarList = [firstViewController, secondViewController, thirdViewController, fourthViewController, fifthViewController]
         
         viewControllers = tabBarList
@@ -36,14 +37,21 @@ class TabBarController: UITabBarController {
         
         setUpNavigationBarItems()
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+         return .lightContent
+     }
 
     override func viewDidLayoutSubviews() {
-        if firstViewController.popUpVC.view.frame.size.height == 0 {
-            self.tabBar.frame = self.tabBar.frame
-            return
+        if let VC = firstViewController.popUpVC {
+            if VC.view.frame.size.height == 0 {
+                self.tabBar.frame = self.tabBar.frame
+                return
+            }
+//            let y =  UIApplication.shared.statusBarFrame.height
+            self.tabBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height*(0.9 + (firstViewController.popUpVC.view.frame.size.height/Helper.ScreenSize.height - 0.1)/6), width: self.tabBar.frame.width, height: UIScreen.main.bounds.height*0.1)
         }
-        
-        self.tabBar.frame = CGRect(x: 0, y: Helper.ScreenSize.height*(0.9 + (firstViewController.popUpVC.view.frame.size.height/Helper.ScreenSize.height - 0.1)/6), width: self.tabBar.frame.width, height: Helper.ScreenSize.height*0.1)
+
     }
 
     
@@ -95,7 +103,7 @@ class TabBarController: UITabBarController {
         buttonStackView.distribution = .fillEqually
         
         NSLayoutConstraint.activate([
-            buttonStackView.heightAnchor.constraint(equalToConstant: Helper.ScreenSize.height*0.08),
+            buttonStackView.heightAnchor.constraint(equalToConstant: Helper.ScreenSize.height*0.05),
             buttonStackView.widthAnchor.constraint(equalToConstant: Helper.ScreenSize.width*0.45),
             logoImageView.heightAnchor.constraint(equalToConstant: Helper.ScreenSize.height*0.025),
             logoImageView.widthAnchor.constraint(equalToConstant: Helper.ScreenSize.width*0.25)

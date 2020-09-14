@@ -14,11 +14,11 @@ class VideoListVC: UIViewController {
     var model = Model()
     var videos = [Video]()
     let tableView = UITableView(frame: .zero, style: .plain)
-    let popUpVC = PopUpVC()
     let headerView = VideoListHeaderView()
     var previousScrollMoment: Date = Date()
     var previousScrollY: CGFloat = 0
     var animatingHeaderView = false
+    var popUpVC: PopUpVC!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,35 +75,23 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        popUpVC = PopUpVC()
         popUpVC.removeFromParent()
         popUpVC.view.removeFromSuperview()
         popUpVC.sampleTBC = self.tabBarController
-        Helper.removeConstraints(for: [popUpVC.popUpView.videoViewController.view, popUpVC.popUpView.descriptionTextView, popUpVC.popUpView.miniStackView])
+        Helper.removeConstraints(for: [popUpVC.popUpView.videoPlayerView, popUpVC.popUpView.descriptionTextView, popUpVC.popUpView.miniStackView])
         popUpVC.popUpView.configureView()
         popUpVC.video = videos[indexPath.row]
         self.navigationController?.addChild(popUpVC)
         self.navigationController?.view.addSubview(popUpVC.view)
+        
         UIView.animate(withDuration: 0.3) {
-            self.popUpVC.view.frame = Helper.ScreenSize
+            self.popUpVC.view.frame = Helper.SafeScreenSize
         }
         popUpVC.popUpView.updateInitialConstraints()
         popUpVC.popUpView.layoutIfNeeded()
+        popUpVC.popUpView.videoPlayerView.setUpPlayerView()
     }
-    
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: Helper.ScreenSize.width, height: Helper.ScreenSize.height*0.08))
-//        view.backgroundColor = .clear
-//        view.addSubview(headerView)
-//        headerView.fillContainer()
-//        headerView.backgroundColor = UIColor.themeColor
-//        return view
-//    }
-//
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return Helper.ScreenSize.height*0.08
-//    }
-//
+
 }
 

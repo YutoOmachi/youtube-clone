@@ -18,10 +18,11 @@ class MiniStackView: UIStackView {
 
     var miniStackViewDelegate: MiniStackViewDelegate?
     
-    @objc let playPauseButton: UIButton = {
+    let playPauseButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = UIColor.white.withAlphaComponent(1)
         return button
     }()
     
@@ -29,6 +30,7 @@ class MiniStackView: UIStackView {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = UIColor.white.withAlphaComponent(1)
         return button
     }()
     

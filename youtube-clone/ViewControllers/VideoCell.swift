@@ -66,6 +66,7 @@ class VideoCell: UITableViewCell {
         infoLabel.text = "\(video.channelTitle)・\(published)"
         
         if let cacheData = CacheManager.getVideoCache(video.thumbnail) {
+            print("found cache data")
             self.thumbnailImageView.image = UIImage(data: cacheData)
             return
         }

@@ -12,6 +12,10 @@ import UIKit
 class Helper {
     
     static var ScreenSize = UIScreen.main.bounds
+        
+    
+    static var SafeScreenSize = CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height)
+    
     
     static func removeConstraints(for views: [UIView]) {
         
