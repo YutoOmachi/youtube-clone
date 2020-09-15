@@ -11,36 +11,56 @@ import AVKit
 import AVFoundation
 
 class VideoPlayerView: UIView {
-
+    
     let controlsContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 0, alpha: 1)
+        view.isHidden = true
         return view
     }()
 
     
     let playPauseButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "pause.fill"), for: .normal)
+        let button = UIButton()
+        button.setImage(UIImage(named: "pause.png"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageView?.contentMode = .scaleAspectFit
         button.tintColor = UIColor.white.withAlphaComponent(1)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(playPauseTapped), for: .touchUpInside)
+        button.isUserInteractionEnabled = true
         return button
     }()
     
-
-    var player: AVPlayer?
-    var playerLayer: AVPlayerLayer?
+    var player: AVPlayer? {
+        get {
+            return playerLayer.player
+        }
+        set {
+            playerLayer.player = newValue
+        }
+    }
+    
+    var playerLayer: AVPlayerLayer {
+        return layer as! AVPlayerLayer
+    }
+    
+    // Override UIView property
+    override static var layerClass: AnyClass {
+        return AVPlayerLayer.self
+    }
     
     @objc func playPauseTapped() {
+        print("tapped")
         if player?.rate != 0 {
             player?.pause()
-            self.playPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            self.playPauseButton.setImage(UIImage(named: "play.png"), for: .normal)
         }
         else {
             player?.play()
-            self.playPauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            self.playPauseButton.setImage(UIImage(named: "pause.png"), for: .normal)
         }
     }
 
@@ -50,6 +70,7 @@ class VideoPlayerView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.black
         setUpContainerView()
+        setUpPlayerView()
     }
     
     
@@ -58,31 +79,31 @@ class VideoPlayerView: UIView {
     }
     
     func setUpContainerView() {
-        self.addSubview(controlsContainerView)
+        addSubview(controlsContainerView)
         controlsContainerView.addSubview(playPauseButton)
-        NSLayoutConstraint.activate([
-            controlsContainerView.topAnchor.constraint(equalToSystemSpacingBelow: self.topAnchor, multiplier: 1),
-            controlsContainerView.leftAnchor.constraint(equalToSystemSpacingAfter: self.leftAnchor, multiplier: 1),
-            controlsContainerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
-            controlsContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
-            playPauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            playPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            playPauseButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
-            playPauseButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4)
-        ])
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPan(_:)))
+        self.addGestureRecognizer(tapGesture)
     }
     
+    
     func setUpPlayerView() {
-        let videoURL = URL(string: "https://wolverine.raywenderlich.com/content/ios/tutorials/video_streaming/foxVillage.m3u8")
+        let videoURL = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+//        https://wolverine.raywenderlich.com/content/ios/tutorials/video_streaming/foxVillage.m3u8
         player = AVPlayer(url: videoURL!)
-        playerLayer = AVPlayerLayer(player: player)
-        self.layer.addSublayer(playerLayer!)
-        updatePlayerLayer()
-        playerLayer?.videoGravity = .resizeAspect
+        playerLayer.videoGravity = .resizeAspect
         layer.needsDisplayOnBoundsChange = true
-        player?.play()
-        print("start playing")
     }
+    
+    
+    func startPlayerView() {
+        self.bringSubviewToFront(controlsContainerView)
+        if player!.isMuted {
+            print("the video is muted")
+        }
+        player?.play()
+
+    }
+    
     
     func setIntialConstraints() {
         NSLayoutConstraint.activate([
@@ -90,8 +111,19 @@ class VideoPlayerView: UIView {
             self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor),
             self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: 0.4),
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 1),
+            controlsContainerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            controlsContainerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            controlsContainerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
+            controlsContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
+            playPauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            playPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            playPauseButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
+            playPauseButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2)
         ])
-        updatePlayerLayer()
+        controlsContainerView.isHidden = true
+
+
+//        updatePlayerLayer()
     }
     
     func setMiddleConstraint(height: CGFloat, ratio: CGFloat) {
@@ -101,7 +133,7 @@ class VideoPlayerView: UIView {
             self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: (1-ratio)),
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 1)
         ])
-        updatePlayerLayer()
+        //        updatePlayerLayer()
     }
     
     
@@ -111,15 +143,18 @@ class VideoPlayerView: UIView {
             self.topAnchor.constraint(equalTo: self.superview!.topAnchor),
             self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor),
             self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: 1),
-            self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: ratio)
+            self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: ratio),
         ])
-        updatePlayerLayer()
+
+//        updatePlayerLayer()
     }
     
-    func updatePlayerLayer() {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        playerLayer?.frame = self.frame
-        CATransaction.commit()
-    }
+    
+    
+//    func updatePlayerLayer() {
+//        CATransaction.begin()
+//        CATransaction.setDisableActions(true)
+//        playerLayer.frame = self.frame
+//        CATransaction.commit()
+//    }
 }

@@ -18,7 +18,7 @@ class VideoListVC: UIViewController {
     var previousScrollMoment: Date = Date()
     var previousScrollY: CGFloat = 0
     var animatingHeaderView = false
-    var popUpVC: PopUpVC!
+    var popUpVC: PopUpVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,22 +75,26 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        popUpVC = PopUpVC()
-        popUpVC.removeFromParent()
-        popUpVC.view.removeFromSuperview()
-        popUpVC.sampleTBC = self.tabBarController
-        Helper.removeConstraints(for: [popUpVC.popUpView.videoPlayerView, popUpVC.popUpView.descriptionTextView, popUpVC.popUpView.miniStackView])
-        popUpVC.popUpView.configureView()
-        popUpVC.video = videos[indexPath.row]
-        self.navigationController?.addChild(popUpVC)
-        self.navigationController?.view.addSubview(popUpVC.view)
-        
-        UIView.animate(withDuration: 0.3) {
-            self.popUpVC.view.frame = Helper.SafeScreenSize
+        if popUpVC?.view.frame != CGRect(x: 0, y: 0, width: 0, height: 0) {
+            popUpVC?.dismiss(animated: true, completion: nil)
         }
-        popUpVC.popUpView.updateInitialConstraints()
-        popUpVC.popUpView.layoutIfNeeded()
-        popUpVC.popUpView.videoPlayerView.setUpPlayerView()
+
+        popUpVC = PopUpVC()
+        popUpVC!.removeFromParent()
+        popUpVC!.view.removeFromSuperview()
+        popUpVC!.sampleTBC = self.tabBarController
+        Helper.removeConstraints(for: [popUpVC!.popUpView.videoPlayerView, popUpVC!.popUpView.descriptionTextView, popUpVC!.popUpView.miniStackView])
+        popUpVC!.popUpView.configureView()
+        popUpVC!.video = videos[indexPath.row]
+        self.navigationController?.addChild(popUpVC!)
+        self.navigationController?.view.addSubview(popUpVC!.view)
+        
+        UIView.animate(withDuration: 0.5) {
+            self.popUpVC!.view.frame = Helper.ScreenSize
+        }
+        popUpVC!.popUpView.updateInitialConstraints()
+        popUpVC!.popUpView.layoutIfNeeded()
+        popUpVC!.popUpView.videoPlayerView.startPlayerView()
     }
 
 }

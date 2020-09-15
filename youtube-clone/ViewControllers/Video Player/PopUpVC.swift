@@ -64,7 +64,7 @@ class PopUpVC: UIViewController {
             if height < UIScreen.main.bounds.height*0.1 {
                 return
             }
-            else if height > Helper.SafeScreenSize.height {
+            else if height > Helper.ScreenSize.height {
                 return
             }
             
@@ -117,11 +117,9 @@ class PopUpVC: UIViewController {
                     self.view.frame = CGRect(x: 0, y: Helper.ScreenSize.maxY*0.8, width: Helper.ScreenSize.width, height: Helper.ScreenSize.maxY*0.1)
                     self.view.layoutIfNeeded()
                     self.sampleTBC.viewDidLayoutSubviews()
-                    self.popUpView.videoPlayerView.updatePlayerLayer()
+//                    self.popUpView.videoPlayerView.updatePlayerLayer()
                 }
                 isFullScreen = false
-                print(popUpView.miniStackView.frame)
-                print(popUpView.videoPlayerView.frame)
             }
             else {
                 // Transform view to full screen
@@ -129,10 +127,10 @@ class PopUpVC: UIViewController {
                     
                 UIView.animate(withDuration: 0.1) {
                     self.popUpView.descriptionTextView.alpha = 1
-                    self.view.frame = Helper.SafeScreenSize
+                    self.view.frame = Helper.ScreenSize
                     self.sampleTBC.viewDidLayoutSubviews()
                     self.view.layoutIfNeeded()
-                    self.popUpView.videoPlayerView.updatePlayerLayer()
+//                    self.popUpView.videoPlayerView.updatePlayerLayer()
                 }
                 isFullScreen = true
             }

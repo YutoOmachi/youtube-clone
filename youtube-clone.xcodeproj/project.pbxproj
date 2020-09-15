@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F24A3442510F6750053CB0B /* VideoPlayerView+TapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F24A3432510F6750053CB0B /* VideoPlayerView+TapGesture.swift */; };
 		3F255C0C250A30400052D4FE /* TabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F255C0B250A30400052D4FE /* TabBarExtension.swift */; };
 		3F4B5C632508C44400F3F461 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5C622508C44400F3F461 /* ColorExtension.swift */; };
 		3F4B5C652508CA2D00F3F461 /* EmptyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5C642508CA2D00F3F461 /* EmptyVC.swift */; };
@@ -19,7 +20,6 @@
 		3F5CC8952506DC9F00D38AE4 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5CC8942506DC9F00D38AE4 /* PopUpView.swift */; };
 		3F5CC8972506E74000D38AE4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5CC8962506E74000D38AE4 /* TabBarController.swift */; };
 		3F724D3224FE4DA1006EA992 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F724D3124FE4DA1006EA992 /* Constants.swift */; };
-		3F9E8A74250BD5A900E75BB6 /* youtube_logo_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9E8A73250BD5A900E75BB6 /* youtube_logo_dark.png */; };
 		3F9F36D4250B695300191557 /* VideoListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F36D3250B695300191557 /* VideoListHeaderView.swift */; };
 		3FCBD94E24FF0C9D002FA4A7 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD94D24FF0C9D002FA4A7 /* Video.swift */; };
 		3FCBD95024FF0CE4002FA4A7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBD94F24FF0CE4002FA4A7 /* Model.swift */; };
@@ -37,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F24A3432510F6750053CB0B /* VideoPlayerView+TapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoPlayerView+TapGesture.swift"; sourceTree = "<group>"; };
 		3F255C0B250A30400052D4FE /* TabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarExtension.swift; sourceTree = "<group>"; };
 		3F4B5C622508C44400F3F461 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		3F4B5C642508CA2D00F3F461 /* EmptyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyVC.swift; sourceTree = "<group>"; };
@@ -49,7 +50,6 @@
 		3F5CC8942506DC9F00D38AE4 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		3F5CC8962506E74000D38AE4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3F724D3124FE4DA1006EA992 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
-		3F9E8A73250BD5A900E75BB6 /* youtube_logo_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_logo_dark.png; sourceTree = "<group>"; };
 		3F9F36D3250B695300191557 /* VideoListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListHeaderView.swift; sourceTree = "<group>"; };
 		3FCBD94D24FF0C9D002FA4A7 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		3FCBD94F24FF0CE4002FA4A7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -98,7 +98,6 @@
 				3FFA2F7B24FCE197009B5948 /* SceneDelegate.swift */,
 				3FFA2F8424FCE19F009B5948 /* LaunchScreen.storyboard */,
 				3FFA2F8224FCE19F009B5948 /* Assets.xcassets */,
-				3F9E8A73250BD5A900E75BB6 /* youtube_logo_dark.png */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -110,6 +109,7 @@
 				3F5CC8942506DC9F00D38AE4 /* PopUpView.swift */,
 				3F5CC88C2506D38D00D38AE4 /* VideoViewController.swift */,
 				3F5C31D3250EED70009CE3FF /* VideoPlayerView.swift */,
+				3F24A3432510F6750053CB0B /* VideoPlayerView+TapGesture.swift */,
 				3F5CC88E2506D4D000D38AE4 /* DescriptionTextView.swift */,
 				3F5CC8902506D52E00D38AE4 /* MiniStackView.swift */,
 			);
@@ -244,7 +244,6 @@
 			files = (
 				3FFA2F8624FCE19F009B5948 /* LaunchScreen.storyboard in Resources */,
 				3FFA2F8324FCE19F009B5948 /* Assets.xcassets in Resources */,
-				3F9E8A74250BD5A900E75BB6 /* youtube_logo_dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +256,7 @@
 			files = (
 				3F5CC88D2506D38D00D38AE4 /* VideoViewController.swift in Sources */,
 				3FFA2F7E24FCE198009B5948 /* VideoListVC.swift in Sources */,
+				3F24A3442510F6750053CB0B /* VideoPlayerView+TapGesture.swift in Sources */,
 				3F5CC8932506D8D000D38AE4 /* Helper.swift in Sources */,
 				3F5C31D4250EED70009CE3FF /* VideoPlayerView.swift in Sources */,
 				3F4B5C632508C44400F3F461 /* ColorExtension.swift in Sources */,
