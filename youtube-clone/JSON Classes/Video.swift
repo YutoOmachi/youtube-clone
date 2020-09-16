@@ -10,7 +10,7 @@ import Foundation
 
 struct Video: Decodable {
     
-    var videoId = ""
+    var id = ""
     var channelTitle = ""
     var title = ""
     var description = ""
@@ -26,7 +26,7 @@ struct Video: Decodable {
         case resourceId
         
         case channelTitle
-        case videoId
+        case id
         case title
         case description
         case published = "publishedAt"
@@ -44,15 +44,14 @@ struct Video: Decodable {
         self.channelTitle  = try snippetContainer.decode(String.self, forKey: .channelTitle)
 
         //Parse VideoID
-        let resourceIdContainer = try snippetContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .resourceId)
-        self.videoId = try resourceIdContainer.decode(String.self, forKey: .videoId)
+        self.id = try container.decode(String.self, forKey: .id)
         
         // Parse thumbnail
         //        let thumbnailContainer = try snippetContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .thumbnails)
         //        let highContainer = try thumbnailContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .high)
         //        self.thumbnail = try highContainer.decode(String.self, forKey: .thumbnail)
-        self.thumbnail = "https://img.youtube.com/vi/\(videoId)/mqdefault.jpg"
-        self.thumbnailHigh = "https://img.youtube.com/vi/\(videoId)/maxresdefault.jpg"
+        self.thumbnail = "https://img.youtube.com/vi/\(id)/mqdefault.jpg"
+        self.thumbnailHigh = "https://img.youtube.com/vi/\(id)/maxresdefault.jpg"
     }
     
 }

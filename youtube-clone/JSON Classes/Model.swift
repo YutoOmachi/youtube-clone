@@ -17,6 +17,7 @@ class Model {
     var delegate: ModelDelegate?
     func getVideos() {
         
+        print("going throuhg")
         guard let url = URL(string: Constants.API_URL) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -37,7 +38,7 @@ class Model {
                 }
             }
             catch {
-                
+                print(error)
             }
             
         }.resume() 

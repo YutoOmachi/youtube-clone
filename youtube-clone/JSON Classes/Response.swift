@@ -13,7 +13,7 @@ struct Response: Decodable {
     var items: [Video]?
     
     enum CodingKeys: String, CodingKey {
-        case items
+        case items 
     }
     
     init (from decoder:Decoder) throws {
