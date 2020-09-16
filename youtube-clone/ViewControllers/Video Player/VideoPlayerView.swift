@@ -96,9 +96,10 @@ class VideoPlayerView: UIView {
     
     
     func startPlayerView() {
-        self.bringSubviewToFront(controlsContainerView)
-        if player!.isMuted {
-            print("the video is muted")
+        do {
+           try AVAudioSession.sharedInstance().setCategory(.playback)
+        } catch(let error) {
+            print(error.localizedDescription)
         }
         player?.play()
 
@@ -121,9 +122,6 @@ class VideoPlayerView: UIView {
             playPauseButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2)
         ])
         controlsContainerView.isHidden = true
-
-
-//        updatePlayerLayer()
     }
     
     func setMiddleConstraint(height: CGFloat, ratio: CGFloat) {
@@ -133,7 +131,6 @@ class VideoPlayerView: UIView {
             self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: (1-ratio)),
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 1)
         ])
-        //        updatePlayerLayer()
     }
     
     
@@ -146,15 +143,6 @@ class VideoPlayerView: UIView {
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: ratio),
         ])
 
-//        updatePlayerLayer()
     }
     
-    
-    
-//    func updatePlayerLayer() {
-//        CATransaction.begin()
-//        CATransaction.setDisableActions(true)
-//        playerLayer.frame = self.frame
-//        CATransaction.commit()
-//    }
 }
