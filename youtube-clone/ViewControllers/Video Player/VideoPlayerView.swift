@@ -15,10 +15,10 @@ class VideoPlayerView: UIView {
     let controlsContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
         view.isHidden = true
         return view
     }()
-
     
     let playPauseButton: UIButton = {
         let button = UIButton()
@@ -32,14 +32,49 @@ class VideoPlayerView: UIView {
         return button
     }()
     
+    @objc func playPauseTapped() {
+        if player?.rate != 0 {
+            player?.pause()
+            self.playPauseButton.setImage(UIImage(named: "play.png"), for: .normal)
+        }
+        else {
+            player?.play()
+            self.playPauseButton.setImage(UIImage(named: "pause.png"), for: .normal)
+        }
+    }
     
     let videoLengthLabel: UILabel = {
         let label = UILabel()
-        label.text = "00:00"
         label.textColor = .white
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.text = "00:00"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    let videoSlider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.minimumTrackTintColor = .red
+        slider.thumbTintColor = .red
+        slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
+        return slider
+    }()
+    
+    @objc func handleSliderChange() {
+        
+        if let duration = player?.currentItem?.duration {
+            let totalSeconds = CMTimeGetSeconds(duration)
+            let value = Float64(videoSlider.value) * totalSeconds
+            
+            let seekTime = CMTime(seconds: value, preferredTimescale: 1)
+            player?.seek(to: seekTime, completionHandler: { (completedSeek) in
+                
+            })
+        }
+
+    }
     
     var player: AVPlayer? {
         get {
@@ -57,17 +92,7 @@ class VideoPlayerView: UIView {
     override static var layerClass: AnyClass {
         return AVPlayerLayer.self
     }
-    
-    @objc func playPauseTapped() {
-        if player?.rate != 0 {
-            player?.pause()
-            self.playPauseButton.setImage(UIImage(named: "play.png"), for: .normal)
-        }
-        else {
-            player?.play()
-            self.playPauseButton.setImage(UIImage(named: "pause.png"), for: .normal)
-        }
-    }
+
 
 
     override init(frame: CGRect) {
@@ -87,6 +112,7 @@ class VideoPlayerView: UIView {
         addSubview(controlsContainerView)
         controlsContainerView.addSubview(playPauseButton)
         controlsContainerView.addSubview(videoLengthLabel)
+        controlsContainerView.addSubview(videoSlider)
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPan(_:)))
         self.addGestureRecognizer(tapGesture)
     }
@@ -105,10 +131,26 @@ class VideoPlayerView: UIView {
         player = AVPlayer(url: videoURL!)
         playerLayer.videoGravity = .resizeAspectFill
         layer.needsDisplayOnBoundsChange = true
+        player?.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
+    }
+    
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "currentItem.loadedTimeRanges" {
+            if let duration = player?.currentItem?.duration {
+                let seconds = CMTimeGetSeconds(duration)
+                let secondsText = Int(seconds) % 60
+                let minutesText = String(format: "%02d", Int(seconds)/60)
+                videoLengthLabel.text = "\(minutesText):\(secondsText)"
+            }
+        }
     }
     
     
     func startPlayerView() {
+        if player?.status == .readyToPlay {
+            
+        }
         do {
            try AVAudioSession.sharedInstance().setCategory(.playback)
         } catch(let error) {

@@ -25,9 +25,13 @@ extension VideoPlayerView {
             playPauseButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
             playPauseButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
             videoLengthLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
-            videoLengthLabel.bottomAnchor.constraint(equalTo: self.controlsContainerView.bottomAnchor),
+            videoLengthLabel.bottomAnchor.constraint(equalTo: self.controlsContainerView.bottomAnchor, constant: -10),
             videoLengthLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
-            videoLengthLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1)
+            videoLengthLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1),
+            videoSlider.leftAnchor.constraint(equalTo: self.leftAnchor),
+            videoSlider.centerYAnchor.constraint(equalTo: self.bottomAnchor),
+            videoSlider.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
+            videoSlider.heightAnchor.constraint(equalToConstant: 20)
         ])
         controlsContainerView.isUserInteractionEnabled = true
         controlsContainerView.isHidden = true
