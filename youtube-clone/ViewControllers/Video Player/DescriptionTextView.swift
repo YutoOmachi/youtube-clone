@@ -24,7 +24,10 @@ class DescriptionTextView: UITextView {
         self.isEditable = false
         self.backgroundColor = UIColor.themeColor.withAlphaComponent(1)
         self.textColor = .white
+        self.textContainerInset = UIEdgeInsets(top: 30, left: 20, bottom: 10, right: 20)
+
     }
+    
     
     func setIntialConstraints() {
         NSLayoutConstraint.activate([

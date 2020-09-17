@@ -36,6 +36,7 @@ class VideoPlayerView: UIView {
     let videoLengthLabel: UILabel = {
         let label = UILabel()
         label.text = "00:00"
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
