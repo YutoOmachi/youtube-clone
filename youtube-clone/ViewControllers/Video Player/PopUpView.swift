@@ -31,6 +31,7 @@ class PopUpView: UIView {
 //        self.addSubview(videoViewController.view)
         self.addSubview(videoPlayerView)
         self.addSubview(descriptionTextView)
+        self.bringSubviewToFront(descriptionTextView)
         self.backgroundColor = UIColor.themeColor.withAlphaComponent(0.95)
     }
     

@@ -113,10 +113,9 @@ class MiniStackView: UIStackView {
         NSLayoutConstraint.activate([
             self.bottomAnchor.constraint(equalTo: self.superview!.bottomAnchor),
             self.rightAnchor.constraint(equalTo: self.superview!.rightAnchor),
-            self.heightAnchor.constraint(equalToConstant: Helper.ScreenSize.height*0.1),
+            self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: 1),
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 2/3)
         ])
-//        1-ratio
     }
 
     @objc func playPauseTapped() {

@@ -49,7 +49,8 @@ class TabBarController: UITabBarController {
                 return
             }
 //            let y =  UIApplication.shared.statusBarFrame.height
-            self.tabBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height*(0.9 + (firstViewController.popUpVC!.view.frame.size.height/Helper.ScreenSize.height - 0.1)/6), width: self.tabBar.frame.width, height: UIScreen.main.bounds.height*0.1)
+            self.tabBar.frame = CGRect(x: 0, y: Helper.ScreenSize.height*(0.9 + (firstViewController.popUpVC!.view.frame.size.height/Helper.ScreenSize.height - 0.07)/6), width: self.tabBar.frame.width, height: Helper.ScreenSize.height*0.1)
+            
         }
 
     }

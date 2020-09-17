@@ -90,7 +90,7 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
         self.navigationController?.view.addSubview(popUpVC!.view)
         
         UIView.animate(withDuration: 0.5) {
-            self.popUpVC!.view.frame = Helper.ScreenSize
+            self.popUpVC!.view.frame = Helper.SafeScreenSize
         }
         popUpVC!.popUpView.updateInitialConstraints()
         popUpVC!.popUpView.layoutIfNeeded()

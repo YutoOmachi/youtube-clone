@@ -24,14 +24,20 @@ class VideoPlayerView: UIView {
         let button = UIButton()
         button.setImage(UIImage(named: "pause.png"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
         button.imageView?.contentMode = .scaleAspectFit
         button.tintColor = UIColor.white.withAlphaComponent(1)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(playPauseTapped), for: .touchUpInside)
         button.isUserInteractionEnabled = true
         return button
+    }()
+    
+    
+    let videoLengthLabel: UILabel = {
+        let label = UILabel()
+        label.text = "00:00"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     var player: AVPlayer? {
@@ -52,7 +58,6 @@ class VideoPlayerView: UIView {
     }
     
     @objc func playPauseTapped() {
-        print("tapped")
         if player?.rate != 0 {
             player?.pause()
             self.playPauseButton.setImage(UIImage(named: "play.png"), for: .normal)
@@ -80,8 +85,16 @@ class VideoPlayerView: UIView {
     func setUpContainerView() {
         addSubview(controlsContainerView)
         controlsContainerView.addSubview(playPauseButton)
+        controlsContainerView.addSubview(videoLengthLabel)
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPan(_:)))
         self.addGestureRecognizer(tapGesture)
+    }
+
+    
+    @objc func tapPan(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            controlsContainerView.isHidden = !controlsContainerView.isHidden
+        }
     }
     
     
@@ -89,7 +102,7 @@ class VideoPlayerView: UIView {
         let videoURL = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
 //        https://wolverine.raywenderlich.com/content/ios/tutorials/video_streaming/foxVillage.m3u8
         player = AVPlayer(url: videoURL!)
-        playerLayer.videoGravity = .resizeAspect
+        playerLayer.videoGravity = .resizeAspectFill
         layer.needsDisplayOnBoundsChange = true
     }
     
@@ -101,46 +114,6 @@ class VideoPlayerView: UIView {
             print(error.localizedDescription)
         }
         player?.play()
-
-    }
-    
-    
-    func setIntialConstraints() {
-        NSLayoutConstraint.activate([
-            self.topAnchor.constraint(equalTo: self.superview!.topAnchor),
-            self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor),
-            self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: 0.4),
-            self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 1),
-            controlsContainerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            controlsContainerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            controlsContainerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
-            controlsContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
-            playPauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            playPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            playPauseButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
-            playPauseButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2)
-        ])
-        controlsContainerView.isHidden = true
-    }
-    
-    func setMiddleConstraint(height: CGFloat, ratio: CGFloat) {
-        NSLayoutConstraint.activate([
-            self.topAnchor.constraint(equalTo: self.superview!.topAnchor),
-            self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor),
-            self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: (1-ratio)),
-            self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 1)
-        ])
-    }
-    
-    
-
-    func setMiniConstraint(height: CGFloat, ratio: CGFloat) {
-        NSLayoutConstraint.activate([
-            self.topAnchor.constraint(equalTo: self.superview!.topAnchor),
-            self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor),
-            self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: 1),
-            self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: ratio),
-        ])
 
     }
     

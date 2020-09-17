@@ -30,7 +30,7 @@ class DescriptionTextView: UITextView {
         NSLayoutConstraint.activate([
             self.bottomAnchor.constraint(equalTo: self.superview!.bottomAnchor),
             self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor),
-            self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: 0.6),
+            self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: 1, constant: -Helper.SafeScreenSize.width*9/16),
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 1),
         ])
     }

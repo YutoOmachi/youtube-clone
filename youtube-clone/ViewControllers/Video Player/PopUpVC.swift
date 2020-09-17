@@ -64,7 +64,7 @@ class PopUpVC: UIViewController {
             if height < UIScreen.main.bounds.height*0.1 {
                 return
             }
-            else if height > Helper.ScreenSize.height {
+            else if height > Helper.SafeScreenSize.height {
                 return
             }
             
@@ -80,14 +80,14 @@ class PopUpVC: UIViewController {
             self.view.frame = newFrame
             
             switch height {
-            case _ where height < Helper.ScreenSize.height*0.2:
-                let ratio = (height/Helper.ScreenSize.height)*10/3
+            case _ where height < Helper.ScreenSize.height*0.15:
+                let ratio = (height/Helper.ScreenSize.height)/0.15
                 popUpView.updateMiniConstraints(height: height, ratio: ratio)
                 self.view.layoutIfNeeded()
                 self.sampleTBC.viewDidLayoutSubviews()
             
             case _ where height < Helper.ScreenSize.height*0.8 :
-                let ratio = height/Helper.ScreenSize.height - 0.2
+                let ratio = height/Helper.SafeScreenSize.height - 0.16
                 popUpView.updateMiddleConstraints(height: height, ratio: ratio)
                 self.view.layoutIfNeeded()
                 self.sampleTBC.viewDidLayoutSubviews()
@@ -111,13 +111,12 @@ class PopUpVC: UIViewController {
             if frame.size.height <= UIScreen.main.bounds.height*separatioPoint {
                 // Transform view to 1/4 of the screen (bottom)
                 
-                popUpView.updateMiniConstraints(height: Helper.ScreenSize.height*0.1, ratio: 1/3)
+                popUpView.updateMiniConstraints(height: Helper.ScreenSize.height*0.07, ratio: 1/3)
                 UIView.animate(withDuration: 0.1) {
                     self.popUpView.descriptionTextView.alpha = 0
-                    self.view.frame = CGRect(x: 0, y: Helper.ScreenSize.maxY*0.8, width: Helper.ScreenSize.width, height: Helper.ScreenSize.maxY*0.1)
+                    self.view.frame = CGRect(x: 0, y: Helper.ScreenSize.maxY*0.83, width: Helper.ScreenSize.width, height: Helper.ScreenSize.maxY*0.07)
                     self.view.layoutIfNeeded()
                     self.sampleTBC.viewDidLayoutSubviews()
-//                    self.popUpView.videoPlayerView.updatePlayerLayer()
                 }
                 isFullScreen = false
             }
@@ -127,10 +126,9 @@ class PopUpVC: UIViewController {
                     
                 UIView.animate(withDuration: 0.1) {
                     self.popUpView.descriptionTextView.alpha = 1
-                    self.view.frame = Helper.ScreenSize
+                    self.view.frame = Helper.SafeScreenSize
                     self.sampleTBC.viewDidLayoutSubviews()
                     self.view.layoutIfNeeded()
-//                    self.popUpView.videoPlayerView.updatePlayerLayer()
                 }
                 isFullScreen = true
             }
