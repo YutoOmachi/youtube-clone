@@ -36,9 +36,7 @@ class PopUpVC: UIViewController {
     
     
     func configureView() {
-//        self.addChild(popUpView.videoViewController)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragPan(_:)))
-//        popUpView.videoViewController.view.addGestureRecognizer(panGesture)
         popUpView.videoPlayerView.addGestureRecognizer(panGesture)
         popUpView.miniStackView.miniStackViewDelegate = self
     }
@@ -101,14 +99,14 @@ class PopUpVC: UIViewController {
         
         if sender.state == .ended {
             let frame = self.view.frame
-            var separatioPoint: CGFloat
+            var separationPoint: CGFloat
             if isFullScreen {
-                separatioPoint = 0.7
+                separationPoint = 0.7
             }
             else {
-                separatioPoint = 0.3
+                separationPoint = 0.3
             }
-            if frame.size.height <= UIScreen.main.bounds.height*separatioPoint {
+            if frame.size.height <= UIScreen.main.bounds.height*separationPoint {
                 // Transform view to 1/4 of the screen (bottom)
                 
                 popUpView.updateMiniConstraints(height: Helper.ScreenSize.height*0.07, ratio: 1/3)

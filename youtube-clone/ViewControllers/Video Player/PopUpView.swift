@@ -12,7 +12,6 @@ import UIKit
 
 class PopUpView: UIView {
 
-//    let videoViewController = VideoViewController()
     let videoPlayerView = VideoPlayerView()
     let descriptionTextView = DescriptionTextView()
     let miniStackView = MiniStackView()
@@ -28,7 +27,6 @@ class PopUpView: UIView {
     
     func configureView() {
         self.addSubview(miniStackView)
-//        self.addSubview(videoViewController.view)
         self.addSubview(videoPlayerView)
         self.addSubview(descriptionTextView)
         self.bringSubviewToFront(videoPlayerView)
@@ -37,7 +35,6 @@ class PopUpView: UIView {
     
     func updateInitialConstraints() {
         Helper.removeConstraints(for: [videoPlayerView, descriptionTextView, miniStackView])
-//        videoViewController.setIntialConstraints()
         videoPlayerView.setIntialConstraints()
         descriptionTextView.setIntialConstraints()
         miniStackView.setIntialConstraints()
@@ -45,7 +42,6 @@ class PopUpView: UIView {
     
     func updateMiddleConstraints(height: CGFloat, ratio: CGFloat) {
         Helper.removeConstraints(for: [videoPlayerView, descriptionTextView, miniStackView])
-//        videoViewController.setMiddleConstraint(height: height, ratio: ratio)
         videoPlayerView.setMiddleConstraint(height: height, ratio: ratio)
         descriptionTextView.setMiddleConstraint(height: height, ratio: ratio)
         miniStackView.setMiddleConstraint()
@@ -53,7 +49,6 @@ class PopUpView: UIView {
     
     func updateMiniConstraints(height: CGFloat, ratio: CGFloat) {
         Helper.removeConstraints(for: [videoPlayerView, descriptionTextView, miniStackView])
-//        videoViewController.setMiniConstraint(height: height, ratio: ratio)
         videoPlayerView.setMiniConstraint(height: height, ratio: ratio)
         descriptionTextView.setMiniConstraint()
         miniStackView.setMiniConstraint(height: height, ratio: ratio)

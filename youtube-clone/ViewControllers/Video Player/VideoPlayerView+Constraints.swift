@@ -16,25 +16,29 @@ extension VideoPlayerView {
             self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor),
             self.heightAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 9/16),
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 1),
+            
             controlsContainerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             controlsContainerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             controlsContainerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
             controlsContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
+            
             playPauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             playPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             playPauseButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
             playPauseButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
-            videoLengthLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
-            videoLengthLabel.bottomAnchor.constraint(equalTo: self.controlsContainerView.bottomAnchor, constant: -10),
-            videoLengthLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
-            videoLengthLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1),
+            
+            videoTimeLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
+            videoTimeLabel.bottomAnchor.constraint(equalTo: self.controlsContainerView.bottomAnchor, constant: -20),
+            videoTimeLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
+            videoTimeLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1),
+            
             videoSlider.leftAnchor.constraint(equalTo: self.leftAnchor),
             videoSlider.centerYAnchor.constraint(equalTo: self.bottomAnchor),
-            videoSlider.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
-            videoSlider.heightAnchor.constraint(equalToConstant: 20)
+            videoSlider.widthAnchor.constraint(equalToConstant: Helper.ScreenSize.width),
+            videoSlider.heightAnchor.constraint(equalToConstant: 30)
         ])
         controlsContainerView.isUserInteractionEnabled = true
-        controlsContainerView.isHidden = true
+        isControlHidden = true
     }
     
     func setMiddleConstraint(height: CGFloat, ratio: CGFloat) {
