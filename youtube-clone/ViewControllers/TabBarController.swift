@@ -48,7 +48,7 @@ class TabBarController: UITabBarController {
                 self.tabBar.frame = self.tabBar.frame
                 return
             }
-//            print(Float(Helper.ScreenSize.height*(0.9 + (firstViewController.popUpVC!.view.frame.size.height/Helper.ScreenSize.height - 0.07)/6)))
+
             self.tabBar.frame = CGRect(x: 0, y: Helper.ScreenSize.height*(0.9 + (firstViewController.popUpVC!.view.frame.size.height/Helper.ScreenSize.height - 0.07)/6), width: self.tabBar.frame.width, height: Helper.ScreenSize.height*0.1)
         }
     }

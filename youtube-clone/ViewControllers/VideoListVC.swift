@@ -78,7 +78,7 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
         if popUpVC?.view.frame != CGRect(x: 0, y: 0, width: 0, height: 0) {
             popUpVC?.dismiss(animated: true, completion: nil)
         }
-
+        popUpVC?.willMove(toParent: nil)
         popUpVC = PopUpVC()
         popUpVC!.removeFromParent()
         popUpVC!.view.removeFromSuperview()
@@ -88,6 +88,7 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
         popUpVC!.video = videos[indexPath.row]
         self.navigationController?.addChild(popUpVC!)
         self.navigationController?.view.addSubview(popUpVC!.view)
+        popUpVC?.didMove(toParent: self.navigationController)
         UIView.animate(withDuration: 0.5) {
             self.popUpVC!.view.frame = Helper.SafeScreenSize
         }
