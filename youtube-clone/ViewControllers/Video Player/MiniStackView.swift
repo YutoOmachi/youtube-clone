@@ -38,7 +38,8 @@ class MiniStackView: UIStackView {
         label.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
         label.contentHorizontalAlignment = .left
         label.isUserInteractionEnabled = false
-        label.setTitle("video title", for: .normal)
+        label.titleLabel?.font = label.titleLabel?.font.withSize(12)
+        label.titleLabel?.lineBreakMode = .byTruncatingTail
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -47,7 +48,8 @@ class MiniStackView: UIStackView {
         label.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 0)
         label.contentHorizontalAlignment = .left
         label.isUserInteractionEnabled = false
-        label.setTitle("channel title", for: .normal)
+        label.titleLabel?.font = label.titleLabel?.font.withSize(12)
+        label.titleLabel?.lineBreakMode = .byTruncatingTail
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

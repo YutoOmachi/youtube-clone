@@ -19,6 +19,8 @@ class PopUpVC: UIViewController {
     var video: Video! {
         didSet {
             self.popUpView.descriptionTextView.setText(video: video)
+            self.popUpView.miniStackView.titleLabel.setTitle(video.title, for: .normal)
+            self.popUpView.miniStackView.channelLabel.setTitle(video.channelTitle, for: .normal)
         }
     }
     
