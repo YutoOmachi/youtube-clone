@@ -38,6 +38,7 @@ extension VideoPlayerView {
             videoSlider.heightAnchor.constraint(equalToConstant: 30)
         ])
         controlsContainerView.isUserInteractionEnabled = true
+        self.isUserInteractionEnabled = true
         isControlHidden = true
     }
     
@@ -49,16 +50,15 @@ extension VideoPlayerView {
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 1)
         ])
     }
-    
-    
 
     func setMiniConstraint(height: CGFloat, ratio: CGFloat) {
         NSLayoutConstraint.activate([
             self.topAnchor.constraint(equalTo: self.superview!.topAnchor),
             self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor),
             self.heightAnchor.constraint(equalTo: self.superview!.heightAnchor, multiplier: 1),
-            self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: ratio),
+            self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: ratio)
         ])
         controlsContainerView.isUserInteractionEnabled = false
+        self.isUserInteractionEnabled = true
     }
 }

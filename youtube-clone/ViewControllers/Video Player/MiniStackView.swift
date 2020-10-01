@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MiniStackViewDelegate {
+protocol VideoControlDelegate {
     func playPauseTapped()
     func closeTapped()
 }
@@ -16,7 +16,7 @@ protocol MiniStackViewDelegate {
 
 class MiniStackView: UIStackView {
 
-    var miniStackViewDelegate: MiniStackViewDelegate?
+    var videoControlDelegate: VideoControlDelegate?
     
     let playPauseButton: UIButton = {
         let button = UIButton()
@@ -33,7 +33,6 @@ class MiniStackView: UIStackView {
         button.tintColor = UIColor.white.withAlphaComponent(1)
         return button
     }()
-    
     let titleLabel: UIButton = {
         let label = UIButton()
         label.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
@@ -71,7 +70,6 @@ class MiniStackView: UIStackView {
         infoStackView.addArrangedSubview(channelLabel)
         infoStackView.distribution = .fillEqually
         infoStackView.axis = .vertical
-        infoStackView.backgroundColor = .systemBackground
         infoStackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -117,13 +115,14 @@ class MiniStackView: UIStackView {
             self.widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: 2/3)
         ])
     }
+    
 
     @objc func playPauseTapped() {
-        miniStackViewDelegate?.playPauseTapped()
+        videoControlDelegate?.playPauseTapped()
     }
 
     @objc func closeTapped() {
-        miniStackViewDelegate?.closeTapped()
+        videoControlDelegate?.closeTapped()
     }
     
 }

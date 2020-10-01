@@ -38,7 +38,8 @@ class PopUpVC: UIViewController {
     func configureView() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragPan(_:)))
         popUpView.videoPlayerView.addGestureRecognizer(panGesture)
-        popUpView.miniStackView.miniStackViewDelegate = self
+        popUpView.miniStackView.videoControlDelegate = self
+        popUpView.videoPlayerView.videoControlDelegate = self
     }
     
     
@@ -136,26 +137,30 @@ class PopUpVC: UIViewController {
 }
 
 
-extension PopUpVC: MiniStackViewDelegate {
+extension PopUpVC: VideoControlDelegate {
     
     func playPauseTapped() {
         if let player = self.popUpView.videoPlayerView.player {
             if player.rate != 0 {
                 player.pause()
                 self.popUpView.miniStackView.playPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+                self.popUpView.videoPlayerView.playPauseButton.setImage(UIImage(named: "play.png"), for: .normal)
             }
             else {
                 player.play()
                 self.popUpView.miniStackView.playPauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+                self.popUpView.videoPlayerView.playPauseButton.setImage(UIImage(named: "pause.png"), for: .normal)
             }
         }
     }
     
     func closeTapped() {
+        self.willMove(toParent: nil)
         self.removeFromParent()
         self.view.removeFromSuperview()
         self.popUpView.descriptionTextView.alpha = 1
         self.popUpView.videoPlayerView.player?.pause()
+        self.parent?.navigationController?.hidesBarsOnSwipe = true
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -12,6 +12,8 @@ import AVFoundation
 
 class VideoPlayerView: UIView {
     
+    var videoControlDelegate: VideoControlDelegate?
+    
     let controlsContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -49,14 +51,7 @@ class VideoPlayerView: UIView {
     }()
     
     @objc func playPauseTapped() {
-        if player?.rate != 0 {
-            player?.pause()
-            self.playPauseButton.setImage(UIImage(named: "play.png"), for: .normal)
-        }
-        else {
-            player?.play()
-            self.playPauseButton.setImage(UIImage(named: "pause.png"), for: .normal)
-        }
+        self.videoControlDelegate?.playPauseTapped()
     }
     
     var videoLength: String = "00:00" {

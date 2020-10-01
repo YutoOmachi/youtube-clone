@@ -72,7 +72,7 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
         return UITableViewCell()
-    }
+    } 
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if popUpVC?.view.frame != CGRect(x: 0, y: 0, width: 0, height: 0) {
@@ -95,6 +95,7 @@ extension VideoListVC: UITableViewDataSource, UITableViewDelegate {
         popUpVC!.popUpView.updateInitialConstraints()
         popUpVC!.popUpView.layoutIfNeeded()
         popUpVC!.popUpView.videoPlayerView.startPlayerView()
+        self.navigationController?.hidesBarsOnSwipe = false
     }
 
 }
