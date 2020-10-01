@@ -157,12 +157,15 @@ extension PopUpVC: VideoControlDelegate {
     }
     
     func closeTapped() {
+        if let navCon = self.parent as? UINavigationController {
+            print("Hello")
+            navCon.hidesBarsOnSwipe = true
+        }
         self.willMove(toParent: nil)
         self.removeFromParent()
         self.view.removeFromSuperview()
         self.popUpView.descriptionTextView.alpha = 1
         self.popUpView.videoPlayerView.player?.pause()
-        self.parent?.navigationController?.hidesBarsOnSwipe = true
         self.dismiss(animated: true, completion: nil)
     }
 }
