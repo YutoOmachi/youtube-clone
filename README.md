@@ -1,4 +1,4 @@
 # youtube-clone
 
 # Demo Video
-https://youtube.com/embed/tPexDluRij8
+video: https://www.youtube.com/embed/tPexDluRij8
