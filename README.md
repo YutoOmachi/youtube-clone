@@ -1,4 +1,4 @@
 # youtube-clone
 
 # Demo Video
-![Farmers Market Finder Demo](YouTubeCloneDemo.gif)
+![YouTubeCloneDemo](YouTubeCloneDemo.gif = 250x)
