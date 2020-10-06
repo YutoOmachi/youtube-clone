@@ -7,7 +7,7 @@ YouTube API is embedded to get the list of most popular videos
 <p align="middle">
   <img src="YouTubeCloneDemo.gif" width="300" height="650"/> <br/>
 </p>
-Smoother Version: https://youtu.be/bq40JLjCjBc 
+Smoother Version: https://www.youtube.com/embed/bq40JLjCjBc
 
 
 ## Features
