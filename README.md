@@ -1,4 +1,4 @@
 # youtube-clone
 
 # Demo Video
-<img src="YouTubeCloneDemo.gif" width="100" height="250"/>
+<img src="YouTubeCloneDemo.gif" width="300" height="650"/>
