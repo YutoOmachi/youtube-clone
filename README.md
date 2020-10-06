@@ -1,4 +1,4 @@
 # youtube-clone
 
 # Demo Video
-video: https://www.youtube.com/embed/tPexDluRij8
+![Farmers Market Finder Demo](YouTubeCloneDemo.gif)
