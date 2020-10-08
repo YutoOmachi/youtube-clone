@@ -1,6 +1,7 @@
 # youtube-clone
 Clone of YouTube app for iPhones. (home screen only) <br/>
-YouTube API is embedded to get the list of most popular videos
+YouTube API is embedded to get the list of most popular videos.  <br/>
+(Your own YouTube API Keys must be added to ConstantsFile)
 
 
 ## Demo Video
@@ -15,6 +16,7 @@ Smoother Version: https://www.youtube.com/embed/bq40JLjCjBc
 * Play remote videos using AVPlayer 
 * Control video (play/pause, skip) using custom cotroller buttons 
 * Resizing of the video player view with pangesture (demonstrated on the demo video)
+
 
 
 ## Language
